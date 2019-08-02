@@ -11,7 +11,8 @@ function loadBackground() {
     } else {
         const parsedImage = JSON.parse(savedImage);
         const today = new Date();
-        if (today > parsedImage.expiresOn) {
+
+        if (today.getTime() > new Date(parsedImage.expiresOn).getTime()) {
             getBackground();
         } else {
             body.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url(${parsedImage.url})`;
@@ -45,21 +46,26 @@ function saveBackgound(imageUrl, city, country, name) {
 
 function getBackground() {
     fetch(UNSPLASH_URL)
-    .then(response => {response.json()})
+    .then(response => {return response.json()}) // readableStream에서 데이터를 읽기 위해서는 .json과 같은 conversion 메소드 중 하나를 써야 한다.
+                                                // 참고 : https://stackoverflow.com/questions/40385133/retrieve-data-from-a-readablestream-object
     .then(json => {
         if (json === undefined || json === null) {
             saveBackgound("images/2.jpg", "Seoul", "Korea", "Highway"); // 2번 이미지 지정 
             return;
         }
         const image = json;
-        if(image.urls && image.urls.full & image.location) {
+        if(image.urls && image.urls.full) {
             const fullUrl = image.urls.full;
             const location = image.location;
-            const city = location.city;
-            const country = location.country;
-            const name = location.name;
+
+            if (location) {
+                city = location.city || "seoul";
+                country = location.country || "korea";
+                name = location.name || "famous_place";
+            }
+
             saveBackgound(fullUrl, city, country, name);
-        } 
+        }
     });
     return;
 }
