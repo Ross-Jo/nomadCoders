@@ -36,7 +36,7 @@ function loadName() {
     if (currentUser === null){
         paintInput();
     } else {
-        paintName(name);
+        paintName(currentUser);
     }
 }
 
