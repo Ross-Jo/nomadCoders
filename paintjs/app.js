@@ -31,7 +31,6 @@ function startPainting() {
 function onMouseMove(event) {
     const x = event.offsetX;
     const y = event.offsetY;
-    console.log("now moving...");
     if (!painting) {
         ctx.beginPath();
         ctx.moveTo(x, y);
