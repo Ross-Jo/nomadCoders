@@ -1,18 +1,18 @@
-// Global
+// category 1: Global
 const HOME = '/';
 const JOIN = '/join';
 const LOGIN = '/login';
 const LOGOUT = '/logout';
 const SEARCH = '/search';
 
-// Users
+// category 2: Users
 const USERS = '/users';
 const USER_DETAIL = '/:id';
 const EDIT_PROFILE = '/edit-profile';
 const CHANGE_PASSWORD = '/change-password';
 const ME = '/me';
 
-// Videos
+// category 3: Videos
 const VIDEOS = '/videos';
 const UPLOAD = '/upload';
 const VIDEO_DETAIL = '/:id';
@@ -27,7 +27,7 @@ const GITHUB_CALLBACK = '/auth/github/callback';
 const FB = '/auth/facebook';
 const FB_CALLBACK = '/auth/facebook/callback';
 
-// API
+// category 4: API
 const API = '/api';
 const REGISTER_VIEW = '/:id/view';
 const ADD_COMMENT = '/:id/comment';
@@ -38,6 +38,7 @@ const routes = {
   login: LOGIN,
   logout: LOGOUT,
   search: SEARCH,
+
   users: USERS,
   user_detail: (id) => {
     if (id) {
@@ -47,6 +48,8 @@ const routes = {
   },
   edit_profile: EDIT_PROFILE,
   change_password: CHANGE_PASSWORD,
+  me: ME,
+
   videos: VIDEOS,
   upload: UPLOAD,
   video_detail: (id) => {
@@ -67,11 +70,12 @@ const routes = {
     }
     return DELETE_VIDEO;
   },
+
   git_hub: GITHUB,
   github_callback: GITHUB_CALLBACK,
-  me: ME,
   facebook: FB,
   facebook_callback: FB_CALLBACK,
+  
   api: API,
   register_view: REGISTER_VIEW,
   add_comment: ADD_COMMENT,

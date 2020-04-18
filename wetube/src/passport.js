@@ -6,6 +6,7 @@ import { githubLoginCallback, facebookLoginCallback } from './controllers/userCo
 import routes from './routes';
 
 passport.use(User.createStrategy());
+
 passport.use(
   new GithubStrategy({
     clientID: process.env.GH_ID,
@@ -24,8 +25,7 @@ passport.use(
       profileFields: ['id', 'displayName', 'photos', 'email'],
       scope: ['public_profile', 'email'],
     },
-    facebookLoginCallback,
-  ),
+    facebookLoginCallback),
 );
 
 passport.serializeUser(User.serializeUser());
