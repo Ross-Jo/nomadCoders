@@ -110,3 +110,5 @@ dist
 ./wetube/.env
 ./wetube/node_modules
 ./wetube/build
+
+./movie_app_2021/node_modules
